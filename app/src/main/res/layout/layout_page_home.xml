@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_page_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,23 +16,37 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginRight="5dp">
             <com.example.chendaole.freecn.view.FluentImageView
-                android:background="@drawable/ic_launcher_background"
+                app:type="round"
+                app:radius="16dp"
+                android:src="@color/colorAccent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="150dp" />
+            <com.example.chendaole.freecn.view.FluentImageView
+                app:type="round"
+                app:radius="16dp"
+                android:src="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
             <Button
-                android:id="@+id/btn_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
+            <com.example.chendaole.freecn.view.FluentImageView
+                app:type="round"
+                app:radius="16dp"
+                android:src="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

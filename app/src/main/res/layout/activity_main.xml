@@ -5,19 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
-
+        android:layout_height="match_parent">
         <android.support.v4.view.ViewPager
             android:id="@+id/layout_pager"
+            android:paddingBottom="60dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <include layout="@layout/layout_dock" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

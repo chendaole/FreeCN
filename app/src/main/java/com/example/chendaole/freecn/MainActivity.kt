@@ -13,7 +13,7 @@ import com.example.chendaole.freecn.adapter.ViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    val pages = ArrayList<View>()
+    private val pages = ArrayList<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

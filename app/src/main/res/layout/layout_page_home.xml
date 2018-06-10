@@ -24,15 +24,6 @@
                 android:src="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
-            <com.example.chendaole.freecn.view.FluentImageView
-                app:type="round"
-                app:radius="16dp"
-                android:src="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="150dp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
@@ -41,12 +32,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginLeft="5dp">
-            <com.example.chendaole.freecn.view.FluentImageView
-                app:type="round"
-                app:radius="16dp"
-                android:src="@color/colorAccent"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,10 +1,15 @@
 package com.example.chendaole.freecn.utils
 
+import android.graphics.Bitmap
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
 object HttpApi {
+    private fun httpGet(strUrl: String): Bitmap? {
+        //TODO: 实现
+    }
+
     private  fun httpGet(strUrl: String, params: Map<String, String>): String {
         var strUrlPath = strUrl
         var result: String ?= null

@@ -23,6 +23,16 @@ class ImageLoader {
         }
     }
 
+    public fun getBitmapFromMemoryCache(key : String) : Bitmap? {
+        return mMemoryCache.get(key)
+    }
+
+    public fun setBitmapToMemoryCache(key: String, bitmap: Bitmap) {
+        if (getBitmapFromMemoryCache(key) == null) {
+            mMemoryCache.put(key, bitmap)
+        }
+    }
+
     companion object {
         private var mImageLoader : ImageLoader? = null
 

@@ -2,6 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
-
+    android:background="@android:color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp">
+        <Button
+            android:id="@+id/button_load_Jar"
+            android:text="@string/button_load_Jar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp" />
+    </LinearLayout>
 </LinearLayout>

@@ -3,8 +3,8 @@ package com.example.chendaole.freecn.adapter
 import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.chendaole.freecn.R
-import com.example.chendaole.freecn.view.FluentImageView
 
 class ViewPagerAdapter: PagerAdapter {
     private var pages: ArrayList<View>
@@ -36,9 +36,16 @@ class ViewPagerAdapter: PagerAdapter {
             listener.onClickJumpToSubActivity()
         }*/
 
+        val btnLoadMethod     = pages[1].findViewById<Button>(R.id.button_load_Jar)
+
+        btnLoadMethod.setOnClickListener {
+            listener.onClickLoadJar()
+        }
+
     }
 
     interface ViewPagerInterface {
         fun onClickJumpToSubActivity()
+        fun onClickLoadJar()
     }
 }

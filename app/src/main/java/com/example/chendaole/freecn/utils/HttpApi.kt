@@ -7,7 +7,7 @@ import java.net.URL
 
 object HttpApi {
     private fun httpGet(strUrl: String): Bitmap? {
-        //TODO: 实现
+        return  null
     }
 
     private  fun httpGet(strUrl: String, params: Map<String, String>): String {

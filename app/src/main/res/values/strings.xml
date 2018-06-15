@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">自由聚合</string>
     <string name="title_activity_sub_free_cn">SubFreeCNActivity</string>
-    <string name="dock_first">没想好》</string>
-    <string name="dock_second">功能测试</string>
-    <string name="dock_third">《没想好</string>
+    <string name="tab_application">小样</string>
+    <string name="tab_module">模块</string>
+    <string name="tab_analyze">分析</string>
     <string name="button_load_Jar">装载Jar</string>
     <string name="button_reflect">调用Method:Say</string>
     <string name="input_params_hint">请输入参数</string>

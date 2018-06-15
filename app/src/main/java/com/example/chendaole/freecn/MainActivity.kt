@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.LinearLayout
 
 
 import com.example.chendaole.freecn.adapter.ViewPagerAdapter
@@ -54,17 +55,17 @@ class MainActivity : AppCompatActivity() {
     private fun initEvent() {
 
         val pager = findViewById<ViewPager>(R.id.layout_pager)
-        val btnHome = findViewById<Button>(R.id.btn_home)
+        val btnHome = findViewById<LinearLayout>(R.id.tab_application)
         btnHome.setOnClickListener {
             pager.setCurrentItem(0, true)
         }
 
-        val btnCustom = findViewById<Button>(R.id.btn_custom)
+        val btnCustom = findViewById<LinearLayout>(R.id.tab_module)
         btnCustom.setOnClickListener {
             pager.setCurrentItem(1, true)
         }
 
-        val btnUser = findViewById<Button>(R.id.btn_user)
+        val btnUser = findViewById<LinearLayout>(R.id.tab_analyze)
         btnUser.setOnClickListener {
             pager.setCurrentItem(2, true)
         }

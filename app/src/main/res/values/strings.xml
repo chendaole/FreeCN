@@ -7,4 +7,5 @@
     <string name="button_load_Jar">装载Jar</string>
     <string name="button_reflect">调用Method:Say</string>
     <string name="input_params_hint">请输入参数</string>
+
 </resources>

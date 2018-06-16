@@ -1,38 +1,47 @@
 package com.example.chendaole.freecn
 
+
+import android.app.Fragment
+import android.app.FragmentManager
+import android.app.FragmentTransaction
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.AssetManager
-import android.media.Image
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.*
+import java.io.File
 
-
-import com.example.chendaole.freecn.adapter.ViewPagerAdapter
 import com.example.chendaole.freecn.utils.AlertDialogUtils
 import com.example.chendaole.freecn.utils.DexClassLoaderUtils
 import com.example.chendaole.freecn.utils.FileUtils
 import com.example.chendaole.freecn.utils.ToastUtils
-import java.io.File
-import java.lang.reflect.Method
+import com.example.chendaole.freecn.view.fragment.AnalyzeFragment
+import com.example.chendaole.freecn.view.fragment.ApplicationFragment
+import com.example.chendaole.freecn.view.fragment.ModuleFragment
 
-class MainActivity : AppCompatActivity() {
-
-    private val pages = ArrayList<View>()
+class MainActivity : AppCompatActivity(),
+        ApplicationFragment.OnFragmentInteractionListener,
+        ModuleFragment.OnFragmentInteractionListener,
+        AnalyzeFragment.OnFragmentInteractionListener {
+    private lateinit var fragments: Array<Fragment>
+    private lateinit var manager: FragmentManager
+    // private val pages = ArrayList<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
 
-        initViewPager()
+        initView()
+
+        manager = fragmentManager
+        val transaction: FragmentTransaction = manager.beginTransaction()
+        transaction.add(R.id.main_fragment, fragments[0])
+        transaction.commit()
+
         initEvent()
     }
 
@@ -40,15 +49,22 @@ class MainActivity : AppCompatActivity() {
      *  处理viewPager初始化
      *
      */
-    private fun initViewPager() {
-        val pager = findViewById<ViewPager>(R.id.layout_pager)
-        pages.add(layoutInflater.inflate(R.layout.layout_page_home, null))
-        pages.add(layoutInflater.inflate(R.layout.layout_page_custom, null))
-        pages.add(layoutInflater.inflate(R.layout.layout_page_user, null))
+    private fun initView() {
+        fragments = arrayOf(ApplicationFragment(), ModuleFragment(), AnalyzeFragment())
+    }
 
-        val adapter = ViewPagerAdapter(pages)
-        adapter.setListener(pagesEvent)
-        pager.adapter = adapter
+    /**
+     * fragment 页面切换
+     * **/
+
+    private fun fragmentSwitch(index: Int) {
+        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+        val fragment: Fragment = fragments[index]
+
+
+
+        transaction.replace(R.id.main_fragment, fragment)
+        transaction.commit()
     }
 
     /**
@@ -74,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dispatchTabsEvent(id: Int) {
-        val pager = findViewById<ViewPager>(R.id.layout_pager)
+      //  val pager = findViewById<ViewPager>(R.id.layout_pager)
         val index: Int = when(id) {
             R.id.tab_application ->  0
             R.id.tab_module -> 1
@@ -93,49 +109,13 @@ class MainActivity : AppCompatActivity() {
             imageButton.isSelected = i == index
         }
 
-        pager.setCurrentItem(index, true)
+        fragmentSwitch(index)
+      //  pager.setCurrentItem(index, true)
     }
 
-    private val pagesEvent = object : ViewPagerAdapter.ViewPagerInterface {
-        override fun onClickJumpToSubActivity() {
-         //   val intent = Intent()
-          //  intent.setClass(this@MainActivity, SubFreeCNActivity::class.java)
-          //  this@MainActivity.startActivity(intent)
-        }
 
-        override fun onClickLoadJar() {
-            val am: AssetManager =  this@MainActivity.assets
-            val fileList: Array<String>  = am.list("")
-            var jarFileList: Array<String> = arrayOf()
-
-            for (filename: String in fileList) {
-                var which:Int = filename.lastIndexOf(".")
-                if (which > -1 ) {
-                    var fileAttr = filename.substring(which + 1).toLowerCase()
-                    if (fileAttr == "jar") {
-                        jarFileList +=  arrayOf(filename)
-                    }
-                }
-            }
-
-            AlertDialogUtils.items(this@MainActivity, "assets", jarFileList, object : DialogInterface.OnClickListener{
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    val filename = jarFileList[which]
-                    val targetPath = DexClassLoaderUtils.getDexDirsPath(this@MainActivity) + File.separator + filename
-
-                    if (!FileUtils.copyAssetFile(am, filename, targetPath)) {
-                        ToastUtils.show(this@MainActivity, "文件迁移失败")
-                        return
-                    }
-
-                    val intent = Intent()
-                    intent.putExtra("filename", jarFileList[which])
-                    intent.setClass(this@MainActivity, SubFreeCNActivity::class.java)
-                    this@MainActivity.startActivity(intent)
-                }
-            }).show()
-
-        }
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 

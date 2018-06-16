@@ -1,4 +1,4 @@
-package com.example.chendaole.freecn.view
+package com.example.chendaole.freecn.view.component
 
 import android.content.Context
 import android.content.res.TypedArray

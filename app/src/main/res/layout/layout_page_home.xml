@@ -16,11 +16,11 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginRight="5dp">
+            android:orientation="vertical">
             <com.example.chendaole.freecn.view.FluentImageView
+                android:elevation="4dp"
                 app:type="round"
-                app:radius="16dp"
+                android:outlineProvider="bounds"
                 android:src="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
@@ -30,8 +30,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp">
+            android:orientation="vertical">
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -7,14 +7,15 @@
     tools:context=".MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorDarkGreen">
         <android.support.v4.view.ViewPager
             android:id="@+id/layout_pager"
             android:paddingBottom="60dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <include layout="@layout/layout_dock" />
+        <include layout="@layout/layout_tabs" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

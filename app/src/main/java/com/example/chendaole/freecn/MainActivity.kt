@@ -3,12 +3,15 @@ package com.example.chendaole.freecn
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.AssetManager
+import android.media.Image
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 
 
@@ -53,22 +56,44 @@ class MainActivity : AppCompatActivity() {
      *
      * */
     private fun initEvent() {
+        val tabApplication = findViewById<LinearLayout>(R.id.tab_application)
+        val tabModule = findViewById<LinearLayout>(R.id.tab_module)
+        val tabAnalyze = findViewById<LinearLayout>(R.id.tab_analyze)
 
+        tabApplication.setOnClickListener{
+            dispatchTabsEvent(it.id)
+        }
+
+        tabModule.setOnClickListener{
+            dispatchTabsEvent(it.id)
+        }
+
+        tabAnalyze.setOnClickListener{
+            dispatchTabsEvent(it.id)
+        }
+    }
+
+    private fun dispatchTabsEvent(id: Int) {
         val pager = findViewById<ViewPager>(R.id.layout_pager)
-        val btnHome = findViewById<LinearLayout>(R.id.tab_application)
-        btnHome.setOnClickListener {
-            pager.setCurrentItem(0, true)
+        val index: Int = when(id) {
+            R.id.tab_application ->  0
+            R.id.tab_module -> 1
+            R.id.tab_analyze -> 2
+            else -> 0
         }
 
-        val btnCustom = findViewById<LinearLayout>(R.id.tab_module)
-        btnCustom.setOnClickListener {
-            pager.setCurrentItem(1, true)
+        val tabs: LinearLayout = findViewById<LinearLayout>(R.id.layout_tabs)
+
+        for (i in 0..(tabs.childCount -1)) {
+            val layoutTab = tabs.getChildAt(i) as LinearLayout
+            val imageButton = layoutTab.getChildAt(0)
+            val textView = layoutTab.getChildAt(1)
+
+            textView.isSelected = i == index
+            imageButton.isSelected = i == index
         }
 
-        val btnUser = findViewById<LinearLayout>(R.id.tab_analyze)
-        btnUser.setOnClickListener {
-            pager.setCurrentItem(2, true)
-        }
+        pager.setCurrentItem(index, true)
     }
 
     private val pagesEvent = object : ViewPagerAdapter.ViewPagerInterface {

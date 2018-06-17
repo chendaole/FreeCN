@@ -5,12 +5,12 @@ import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
-object HttpApi {
-    private fun httpGet(strUrl: String): Bitmap? {
+object HttpUtils {
+    private fun get(strUrl: String): Bitmap? {
         return  null
     }
 
-    private  fun httpGet(strUrl: String, params: Map<String, String>): String {
+    private  fun get(strUrl: String, params: Map<String, String>): String {
         var strUrlPath = strUrl
         var result: String ?= null
 
@@ -50,7 +50,7 @@ object HttpApi {
         return result!!
     }
 
-    private fun httpPost(strUrl: String, params: Map<String, String>): String {
+    private fun post(strUrl: String, params: Map<String, String>): String {
         val data = getRequestData(params).toString().toByteArray()
 
         try {

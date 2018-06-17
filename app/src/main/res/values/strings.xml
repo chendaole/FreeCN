@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">自由聚合</string>
     <string name="title_activity_sub_free_cn">SubFreeCNActivity</string>
-    <string name="tab_application">小样</string>
+    <string name="tab_application">Demo</string>
     <string name="tab_module">模块</string>
     <string name="tab_analyze">分析</string>
     <string name="button_load_Jar">装载Jar</string>

@@ -110,7 +110,7 @@ class FluentImageView: ImageView {
                 MODE_ROUND -> {
                     val bitmap : Bitmap? = drawable2Bitmap(mDrawable)
                     mPaint.shader = object : BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP){}
-                    val rect = RectF(x, y , x + width , y + height)
+                    val rect = RectF(0f, 0f ,  width.toFloat() , y + height.toFloat())
                     canvas.drawRoundRect(rect, currRound.toFloat(), currRound.toFloat(), mPaint)
                 }
 

@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity(),
      */
     private fun initView() {
         fragments = arrayOf(ApplicationFragment(), ModuleFragment(), AnalyzeFragment())
+        val tab_application = findViewById<LinearLayout>(R.id.tab_application)
+        tab_application.getChildAt(0).isSelected = true
+        tab_application.getChildAt(1).isSelected = true
     }
 
     /**

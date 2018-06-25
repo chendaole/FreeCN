@@ -8,4 +8,7 @@
     <string name="button_reflect">调用Method:Say</string>
     <string name="input_params_hint">请输入参数</string>
 
+    <!--小样 Fragment 字符-->
+    <string name="call_plugin">调用插件</string>
+
 </resources>

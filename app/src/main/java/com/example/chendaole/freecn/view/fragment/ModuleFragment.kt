@@ -56,7 +56,7 @@ class ModuleFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val btn = getView().findViewById<Button>(R.id.button_load_Jar)
+        val btn = getView().findViewById(R.id.button_load_Jar) as Button
 
         btn.setOnClickListener {
             onClickLoadJar()
@@ -84,7 +84,7 @@ class ModuleFragment : Fragment() {
 
 
     fun onClickLoadJar() {
-        val am: AssetManager = this.context.assets
+        val am: AssetManager = activity.assets
         val fileList: Array<String>  = am.list("")
         var jarFileList: Array<String> = arrayOf()
 
@@ -98,19 +98,19 @@ class ModuleFragment : Fragment() {
             }
         }
 
-        AlertDialogUtils.items(this.context, "assets", jarFileList, object : DialogInterface.OnClickListener{
+        AlertDialogUtils.items(activity, "assets", jarFileList, object : DialogInterface.OnClickListener{
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 val filename = jarFileList[which]
                 val targetPath = DexClassLoaderUtils.getDexDirsPath(this@ModuleFragment.context) + File.separator + filename
 
                 if (!FileUtils.copyAssetFile(am, filename, targetPath)) {
-                    ToastUtils.show(this@ModuleFragment.context, "文件迁移失败")
+                    ToastUtils.show(this@ModuleFragment.activity, "文件迁移失败")
                     return
                 }
 
                 val intent = Intent()
                 intent.putExtra("filename", jarFileList[which])
-                intent.setClass(this@ModuleFragment.context, SubFreeCNActivity::class.java)
+                intent.setClass(this@ModuleFragment.activity, SubFreeCNActivity::class.java)
                 this@ModuleFragment.startActivity(intent)
             }
         }).show()

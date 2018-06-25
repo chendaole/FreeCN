@@ -4,11 +4,19 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.app.Fragment
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
 import com.example.chendaole.freecn.R
+import com.example.chendaole.freecn.utils.PluginUtils
+import dalvik.system.DexClassLoader
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +50,11 @@ class ApplicationFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_application, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initEvent()
     }
 
 
@@ -99,4 +112,38 @@ class ApplicationFragment : Fragment() {
                     }
                 }
     }
+
+
+    fun initEvent() {
+        val btnCallPlugin = view.findViewById(R.id.btn_call_plugin) as Button
+        btnCallPlugin.setOnClickListener{
+            callPlugin()
+        }
+    }
+
+    /**
+     * 调用插件
+     * **/
+    fun callPlugin() {
+       var plugin =PluginUtils.getPlugin(activity, "plugin-debug.apk")
+
+       val dex: DexClassLoader? = plugin.instance()
+
+      //  val intent: Intent = Intent("com.example.plugin", null)
+      //  val pm: PackageManager = activity.packageManager
+      //  val resolveinfoes = pm.queryIntentActivities(intent, 0)
+       // val actInfo = resolveinfoes.get(0).activityInfo
+       // val packName: String = actInfo.packageName
+
+
+
+       val cls: Class<*>? = dex!!.loadClass("com.example.plugin.MainActivity")
+        val obj: Any  = cls!!.newInstance()
+
+        val intent = Intent()
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+        intent.setClass(activity, obj::class.java)
+        activity.startActivity(intent)
+    }
+
 }

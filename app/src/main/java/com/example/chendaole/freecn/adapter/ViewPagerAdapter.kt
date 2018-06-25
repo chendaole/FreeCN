@@ -36,7 +36,7 @@ class ViewPagerAdapter: PagerAdapter {
             listener.onClickJumpToSubActivity()
         }*/
 
-        val btnLoadMethod     = pages[1].findViewById<Button>(R.id.button_load_Jar)
+        val btnLoadMethod     = pages[1].findViewById(R.id.button_load_Jar) as Button
 
         btnLoadMethod.setOnClickListener {
             listener.onClickLoadJar()

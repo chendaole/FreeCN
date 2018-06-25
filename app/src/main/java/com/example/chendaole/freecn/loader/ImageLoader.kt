@@ -1,8 +1,7 @@
-package com.example.chendaole.freecn.utils
+package com.example.chendaole.freecn.loader
 
 import android.graphics.Bitmap
 import android.util.LruCache
-import kotlin.system.measureTimeMillis
 
 class ImageLoader {
     private var  mMemoryCache : LruCache<String, Bitmap>

@@ -1,9 +1,13 @@
 package com.example.chendaole.freecn.utils
 
+import android.content.Context
 import android.content.res.AssetManager
 import android.util.Log
 import java.io.*
 import java.nio.channels.FileChannel
+import java.util.zip.ZipEntry
+import org.zeroturnaround.zip.ZipUtil
+import kotlin.math.log
 
 object FileUtils {
     fun copyFile(source: File, target: String?): Boolean {
@@ -74,5 +78,23 @@ object FileUtils {
         } catch (e: IOException) {
             return false
         }
+    }
+
+    fun extractAssets(context: Context, filename:String,  outPath: String) {
+        val am = context.assets
+        val inputStream = am.open(filename)
+        val out:File = File(outPath)
+
+        if (out.exists()) {
+            out.delete()
+        }
+
+        out.mkdirs()
+
+        ZipUtil.unpack(inputStream, File(outPath))
+
+        val files: Array<File> = File(outPath).listFiles()
+
+        Log.d("sffs", "dsfsdf")
     }
 }

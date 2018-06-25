@@ -30,14 +30,14 @@ class SubFreeCNActivity : Activity() {
             }
             else -> {
                 val obj: Any?  = cls.newInstance()
-                val linearLayout  = findViewById<LinearLayout>(R.id.layout_methods)
+                val linearLayout  = findViewById(R.id.layout_methods) as LinearLayout
                 cls.declaredMethods.map {
                     method ->
                         val btn = Button(this@SubFreeCNActivity)
                         btn.text = "点击调用:" + method.name
                         linearLayout.addView(btn)
                         btn.setOnClickListener{
-                            var params: String = findViewById<EditText>(R.id.editText_input_params).text.toString()
+                            var params: String = (findViewById(R.id.editText_input_params) as EditText ).text.toString()
 
                             if (params.isEmpty()) {
                                 params = "you"

@@ -4,20 +4,13 @@ package com.example.chendaole.freecn
 import android.app.Fragment
 import android.app.FragmentManager
 import android.app.FragmentTransaction
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.res.AssetManager
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.widget.*
-import java.io.File
+import com.example.chendaole.freecn.utils.PluginUtils
 
-import com.example.chendaole.freecn.utils.AlertDialogUtils
-import com.example.chendaole.freecn.utils.DexClassLoaderUtils
-import com.example.chendaole.freecn.utils.FileUtils
-import com.example.chendaole.freecn.utils.ToastUtils
 import com.example.chendaole.freecn.view.fragment.AnalyzeFragment
 import com.example.chendaole.freecn.view.fragment.ApplicationFragment
 import com.example.chendaole.freecn.view.fragment.ModuleFragment
@@ -43,6 +36,10 @@ class MainActivity : AppCompatActivity(),
         transaction.commit()
 
         initEvent()
+
+        //插件面清单配置
+        val hook: PluginUtils.Hook = PluginUtils.Hook(this, this@MainActivity.javaClass)
+        hook.hookAms()
     }
 
     /**
@@ -51,7 +48,7 @@ class MainActivity : AppCompatActivity(),
      */
     private fun initView() {
         fragments = arrayOf(ApplicationFragment(), ModuleFragment(), AnalyzeFragment())
-        val tab_application = findViewById<LinearLayout>(R.id.tab_application)
+        val tab_application = findViewById(R.id.tab_application) as LinearLayout
         tab_application.getChildAt(0).isSelected = true
         tab_application.getChildAt(1).isSelected = true
     }
@@ -75,9 +72,9 @@ class MainActivity : AppCompatActivity(),
      *
      * */
     private fun initEvent() {
-        val tabApplication = findViewById<LinearLayout>(R.id.tab_application)
-        val tabModule = findViewById<LinearLayout>(R.id.tab_module)
-        val tabAnalyze = findViewById<LinearLayout>(R.id.tab_analyze)
+        val tabApplication = findViewById(R.id.tab_application) as LinearLayout
+        val tabModule = findViewById(R.id.tab_module) as LinearLayout
+        val tabAnalyze = findViewById(R.id.tab_analyze) as LinearLayout
 
         tabApplication.setOnClickListener{
             dispatchTabsEvent(it.id)
@@ -101,7 +98,7 @@ class MainActivity : AppCompatActivity(),
             else -> 0
         }
 
-        val tabs: LinearLayout = findViewById<LinearLayout>(R.id.layout_tabs)
+        val tabs: LinearLayout = findViewById(R.id.layout_tabs) as LinearLayout
 
         for (i in 0..(tabs.childCount -1)) {
             val layoutTab = tabs.getChildAt(i) as LinearLayout
